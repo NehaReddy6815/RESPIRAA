@@ -1,16 +1,154 @@
-# ?? Respira Full Project
+# 🌍 SafeSphere — AI-Powered Air Quality Monitoring System
 
-Respira is an end-to-end environmental health system combining real-time IoT data streaming, AI/ML analysis, and interactive dashboards across multiple frontend apps.
+SafeSphere is a full-stack intelligent system that analyzes air quality using a hybrid AI approach combining Machine Learning, rule-based logic, and LLM-generated insights.
 
-## Project Overview
+---
 
-This repository contains three main components:
+## 📌 Project Overview
 
-1. **Backend** (`backend/`): Node/Express API for dataset streaming and AI analysis.
-2. **Frontend Dashboard** (`frontend/`): React + Vite UI for real-time environmental monitoring.
-3. **SafeSphere Air Insights** (`safesphere-air-insights/`): Advanced UI app with auth, dashboards, trends, and insights.
+SafeSphere monitors environmental conditions using:
 
-The app uses data from a sample air quality dataset and AI analysis flows for recommendations.
+* AQI
+* PM2.5
+* PM10
+
+and provides:
+
+* 📊 AI-based score prediction
+* ⚠️ Health risk classification
+* 🧠 LLM-powered insights & recommendations
+* 🗺️ Interactive air quality maps
+* 📈 Trend visualization
+
+---
+
+## 🎯 Core Idea (Hybrid AI System)
+
+| Component | Approach         |
+| --------- | ---------------- |
+| Score     | ML Model         |
+| Risk      | Rule-based logic |
+| Insights  | LLM              |
+
+👉 Why this works:
+
+* ML → accurate prediction
+* Rules → reliable health classification
+* LLM → human-like explanations
+
+---
+
+## 🏗️ System Architecture
+
+```id="arch1"
+Frontend (React)
+        ↓
+Node.js Backend (Express)
+        ↓
+FastAPI (Python ML Service)
+        ↓
+ML Model (Gradient Boosting)
+        ↓
+MongoDB (Storage)
+        ↓
+LLM (Groq API)
+```
+
+---
+
+## ⚙️ Tech Stack
+
+### 🎨 Frontend
+
+* React + TypeScript
+* Vite
+* Tailwind CSS
+* Framer Motion
+* ShadCN UI
+* React Leaflet (Maps)
+* Recharts (Charts)
+
+### ⚙️ Backend
+
+* Node.js
+* Express.js
+* Axios
+
+### 🤖 ML & AI
+
+* Python
+* FastAPI
+* Scikit-learn
+* Gradient Boosting Regressor
+* Groq LLM (LLaMA 3.1)
+
+### 🗄️ Database
+
+* MongoDB Atlas
+* Mongoose
+
+---
+
+## 🤖 Machine Learning Model
+
+### Model Used
+
+```python
+from sklearn.ensemble import GradientBoostingRegressor
+```
+
+### Input Features
+
+* AQI
+* PM2.5
+* PM10
+
+### Output
+
+* Composite Air Quality Score
+
+### Training
+
+```python
+X = df[["AQI", "PM2.5", "PM10"]]
+y = df["score"]
+```
+
+### Evaluation
+
+* MAE (Mean Absolute Error)
+
+---
+
+## ⚠️ Risk Classification (Rule-Based)
+
+```python
+if aqi <= 50:
+    risk = "LOW"
+elif aqi <= 100:
+    risk = "MODERATE"
+else:
+    risk = "HIGH"
+```
+
+✅ Ensures reliability for health-related decisions
+
+---
+
+## 🧠 LLM Integration (Groq)
+
+Used for:
+
+* Insight generation
+* Recommendations
+
+### Example Output
+
+* “Air quality is unhealthy…”
+* “Wear a mask”
+* “Avoid outdoor activities”
+
+---
 
 ## Folder Structure
 
@@ -30,18 +168,111 @@ The app uses data from a sample air quality dataset and AI analysis flows for re
   - React + TS + ShadCN UI app with auth and multi-page analytics
   - `src/pages` contains Dashboard, Analyze, Trends, Insights, Profile flows
   - `src/integrations/supabase` for backend integration
-  - `README.md` with focused UI docs
+  - `README.md` with focused UI doc
+## 🗄️ Database Schema
 
-## Backend (API + ML)
+```json
+{
+  "AQI": Number,
+  "PM25": Number,
+  "PM10": Number,
+  "score": Number,
+  "risk": String,
+  "insight": String,
+  "advice": [String],
+  "createdAt": Date
+}
+```
 
-### Key features
+---
 
-- Stream dataset records from CSV with incremental indexing
-- `/dataset` endpoint returns live object updates
-- `/analyze` endpoint calls local ML prediction server (`http://127.0.0.1:8000/predict`) and HF LLM for text insights
-- AI Service supports fallback advice when external APIs fail
+## 🗺️ Air Quality Map Feature
 
-### Run backend
+### Tech Used
+
+* React + TypeScript
+* Leaflet
+* OpenWeather API
+* Axios
+
+### How It Works
+
+* Predefined Bangalore locations
+* Backend fetches AQI using:
+
+  ```
+  /analyze/aqi?lat={lat}&lon={lon}
+  ```
+* Frontend uses `Promise.all()` to fetch all data
+
+### Visualization
+
+* 🟢 Green → Good
+* 🟠 Orange → Moderate
+* 🔴 Red → Poor
+
+### Features
+
+* Circle markers with AQI intensity
+* Popups (AQI, PM2.5, PM10)
+* Top polluted areas
+* Auto-refresh
+
+---
+
+## 📈 Trends & Data Visualization
+
+### What the graph shows
+
+* Timeline of user analyses stored in MongoDB
+
+### Axes
+
+* X → Time (createdAt)
+* Y → AQI, PM2.5, PM10
+
+### Lines
+
+| Metric | Color  |
+| ------ | ------ |
+| AQI    | Teal   |
+| PM2.5  | Yellow |
+| PM10   | Purple |
+
+⚠️ Graph appears “spiky” because:
+
+* Data is user-triggered (not continuous)
+* Values vary per input
+
+---
+
+## ⚙️ Backend Flow
+
+```id="flow1"
+User Input → Node API → FastAPI → ML Score
+                     → LLM → Insights
+                     → MongoDB → Save
+                     → Response → Frontend
+```
+
+---
+
+## 🎨 Frontend Features
+
+* Analyze air quality form
+* Score + risk badge
+* AI insights section
+* Recommendations list
+* Dashboard overview
+* Trend graphs
+* Interactive map
+* Health onboarding
+
+---
+
+## 🚀 How to Run
+
+### 1️⃣ Backend
 
 ```bash
 cd backend
@@ -49,32 +280,17 @@ npm install
 node server.js
 ```
 
-Then verify:
-- `http://localhost:5000/`
-- `http://localhost:5000/dataset`
+---
 
-## Frontend Dashboard (Simple Real-time UI)
-
-### Run UI
+### 2️⃣ ML Service
 
 ```bash
-cd frontend
-npm install
-npm run dev
+uvicorn ml_api:app --reload
 ```
 
-Open `http://localhost:5173` or shown port.
+---
 
-### What it does
-
-- Polls `http://localhost:5000/dataset` every 2 seconds
-- Shows PM2.5, PM10, temperature, humidity, gas, motion, vibration cards
-- Color-coded risk highlights and historical list
-- Live chart updates using Chart.js
-
-## SafeSphere Air Insights UI
-
-### Run UI
+### 3️⃣ Frontend
 
 ```bash
 cd safesphere-air-insights
@@ -82,37 +298,48 @@ npm install
 npm run dev
 ```
 
-Open `http://localhost:5173`.
+---
 
-### What it includes
+## 🔥 Key Features
 
-- Auth flow, onboarding, dashboard, analysis, trends, insights, profile pages
-- React Query data fetching, Tailwind UI components, responsive dashboard layout
-- Supabase integration and data visualizations with Recharts
+✔ ML-based scoring
+✔ Rule-based safety logic
+✔ LLM-generated insights
+✔ MongoDB persistence
+✔ Interactive maps
+✔ Real-time UI updates
 
-## Full Project Run Guide
+---
 
-1. Start backend:
-   - `cd backend && node server.js`
-2. Start frontend dashboard:
-   - `cd frontend && npm run dev`
-3. Start SafeSphere UI app (optional for additional UI):
-   - `cd safesphere-air-insights && npm run dev`
-4. Ensure local ML API is running at `http://127.0.0.1:8000/predict` for `/analyze`.
+## 💡 Future Improvements
 
-## Notes
+* Live AQI sensors
+* GPS-based tracking
+* Time-series forecasting
+* Mobile app
 
-- The repository contains multiple front-end apps; use each app's README for UI-specific details.
-- Keep `backend` running while testing frontends.
-- Add your Hugging Face API key in backend `.env` for AI insights.
+---
 
-## Where to look
+## 🧠 Conclusion
 
-- `backend/services/datasetService.js` � dataset streaming logic
-- `backend/services/aiService.js` � ML + LLM integration and fallback
-- `frontend/src/App.jsx` � minimal dashboard implementation
-- `safesphere-air-insights/src/pages` � advanced UI pages
+SafeSphere demonstrates a hybrid AI architecture combining:
 
-## License
+* Machine Learning
+* Rule-based systems
+* Generative AI
 
-[Add license here]
+to deliver reliable and intelligent air quality monitoring.
+
+---
+
+## 💬 Demo Line
+
+"SafeSphere combines ensemble machine learning, rule-based safety logic, and LLM-driven insights to deliver reliable and intelligent air quality monitoring."
+
+---
+
+## 👩‍💻 Author
+
+Neha Reddy
+
+---
