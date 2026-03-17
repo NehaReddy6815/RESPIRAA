@@ -1,0 +1,101 @@
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  color: white;
+}
+
+.app {
+  text-align: center;
+  padding: 30px;
+}
+
+.title {
+  font-size: 42px;
+  margin-bottom: 5px;
+}
+
+.subtitle {
+  color: #94a3b8;
+  margin-bottom: 30px;
+}
+
+/* 🔥 INPUT */
+.input-panel {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.input-panel input {
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  width: 120px;
+}
+
+.input-panel button {
+  padding: 10px 20px;
+  background: #3b82f6;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+}
+
+/* 🧠 SCORE */
+.score-card {
+  background: #111827;
+  padding: 20px;
+  border-radius: 16px;
+  margin: 20px auto;
+  width: 300px;
+}
+
+.score {
+  font-size: 60px;
+  margin: 10px 0;
+}
+
+.risk {
+  font-size: 20px;
+}
+
+.risk.HIGH {
+  color: red;
+}
+.risk.MODERATE {
+  color: orange;
+}
+.risk.LOW {
+  color: lightgreen;
+}
+
+/* 💡 INSIGHT */
+.insight-box {
+  background: #1f2937;
+  padding: 15px;
+  border-radius: 12px;
+  margin: 20px auto;
+  max-width: 600px;
+}
+
+/* 🚀 CARDS */
+.recommendations {
+  margin-top: 20px;
+}
+
+.cards {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.card {
+  background: #0ea5e9;
+  padding: 15px;
+  border-radius: 12px;
+  min-width: 200px;
+}

@@ -1,0 +1,38 @@
+# 🔐 ENV FILES (VERY IMPORTANT)
+.env
+.env.*
+backend/.env
+
+# 📦 NODE MODULES
+node_modules
+backend/node_modules
+frontend/node_modules
+
+# 🏗 BUILD FILES
+dist
+build
+frontend/dist
+
+# 🧠 ML FILES (optional - large)
+*.pkl
+*.h5
+*.pt
+
+# 🐍 PYTHON
+__pycache__/
+*.pyc
+
+# 🧾 LOGS
+logs
+*.log
+
+# 💻 OS FILES
+.DS_Store
+Thumbs.db
+
+# 🛠 EDITOR FILES
+.vscode/
+.idea/
+
+# 🔒 CACHE
+.cache/
