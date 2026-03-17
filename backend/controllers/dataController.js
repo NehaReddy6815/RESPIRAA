@@ -1,5 +1,6 @@
 const { getMappedData } = require("../services/datasetService");
 const { analyzeData } = require("../services/aiService");
+const Analysis = require("../models/Analysis");
 
 // 🔥 STREAMING DATA API
 exports.loadDataset = async (req, res) => {

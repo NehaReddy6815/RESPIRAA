@@ -4,35 +4,37 @@ import pandas as pd
 
 app = FastAPI()
 
-# 🔥 Load trained model
 model = joblib.load("model.pkl")
+print(type(model))
 
-@app.get("/")
-def home():
-    return {"message": "ML API is running 🚀"}
 
-# 🔥 Prediction endpoint
 @app.post("/predict")
 def predict(data: dict):
     try:
-        # Convert input to DataFrame
+        # 🔥 Inputs
+        aqi = float(data.get("AQI", 0))
+        pm25 = float(data.get("PM2.5", 0))
+        pm10 = float(data.get("PM10", 0))
+
         df = pd.DataFrame([{
-            "AQI": data.get("AQI"),
-            "PM2.5": data.get("PM2.5"),
-            "PM10": data.get("PM10")
+            "AQI": aqi,
+            "PM2.5": pm25,
+            "PM10": pm10
         }])
 
-        # 🔮 Predict
+        # 🔥 ML MODEL → SCORE
         prediction = model.predict(df)[0]
+
+        # Ensure it's a number
         score = int(prediction)
 
-        # 🚨 Risk classification
-        if score > 70:
-            risk = "HIGH"
-        elif score > 40:
+        # 🔥 RULE-BASED RISK (NOT ML)
+        if aqi <= 70:
+            risk = "LOW"
+        elif aqi <= 120:
             risk = "MODERATE"
         else:
-            risk = "LOW"
+            risk = "HIGH"
 
         return {
             "score": score,
@@ -40,6 +42,5 @@ def predict(data: dict):
         }
 
     except Exception as e:
-        return {
-            "error": str(e)
-        }
+        print("ERROR:", e)
+        return {"error": str(e)}
