@@ -4,8 +4,51 @@
 @tailwind components;
 @tailwind utilities;
 
+/* 🌞 LIGHT THEME (DEFAULT) */
 @layer base {
   :root {
+    --background: 0 0% 100%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 98%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 98%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 168 64% 45%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 20% 96%;
+    --secondary-foreground: 222 47% 11%;
+
+    --muted: 210 20% 96%;
+    --muted-foreground: 215 16% 46%;
+
+    --accent: 168 64% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 168 64% 45%;
+
+    --radius: 1rem;
+
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 222 47% 11%;
+    --sidebar-primary: 168 64% 45%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 210 20% 96%;
+    --sidebar-accent-foreground: 222 47% 11%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 168 64% 45%;
+  }
+
+  /* 🌙 DARK THEME (YOUR CURRENT DESIGN) */
+  .dark {
     --background: 222 47% 2%;
     --foreground: 210 40% 92%;
 
@@ -34,12 +77,6 @@
     --input: 0 0% 100% / 0.08;
     --ring: 168 64% 52%;
 
-    --radius: 1rem;
-
-    --risk-low: 160 60% 45%;
-    --risk-med: 38 92% 50%;
-    --risk-high: 0 84% 60%;
-
     --glass-bg: 0 0% 100% / 0.05;
     --glass-border: 0 0% 100% / 0.1;
     --glass-blur: 24px;
@@ -55,17 +92,19 @@
   }
 }
 
+/* BASE */
 @layer base {
   * {
-    @apply border-white/[0.08];
+    @apply border-border;
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    @apply bg-background text-foreground font-sans antialiased transition-colors duration-300;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
 }
 
+/* COMPONENTS (unchanged) */
 @layer components {
   .glass-card {
     @apply bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl shadow-[0_8px_32px_0_rgba(0,0,0,0.3)];
@@ -102,18 +141,9 @@
   .btn-primary {
     @apply w-full py-4 bg-primary hover:brightness-110 disabled:bg-secondary text-primary-foreground font-bold rounded-xl transition-all transform active:scale-[0.98];
   }
-
-  .badge-low {
-    @apply bg-emerald-500/20 text-emerald-400;
-  }
-  .badge-med {
-    @apply bg-amber-500/20 text-amber-400;
-  }
-  .badge-high {
-    @apply bg-rose-500/20 text-rose-400;
-  }
 }
 
+/* UTILITIES */
 @layer utilities {
   .tabular-nums {
     font-variant-numeric: tabular-nums;

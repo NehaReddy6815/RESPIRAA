@@ -8,7 +8,7 @@ import Analyze from "@/pages/Analyze";
 import Trends from "@/pages/Trends";
 import Maps from "@/pages/Maps";
 import Profile from "@/pages/Profile";
-
+import ThemeToggle from "@/components/ThemeToggle"; // ✅ ADD THIS
 
 const tabs = [
   { id: "Microplastic", icon: Droplets },
@@ -34,15 +34,15 @@ const Index = () => {
   const [activeTab, setActiveTab] = useState<TabId>("Dashboard");
   const [profileComplete, setProfileComplete] = useState(false);
 
-  // 👉 SHOW ONBOARDING FIRST
   if (!profileComplete) {
-   return <HealthOnboarding onComplete={() => setProfileComplete(true)} />;
+    return <HealthOnboarding onComplete={() => setProfileComplete(true)} />;
   }
 
   const ActiveComponent = tabComponents[activeTab];
 
   return (
     <div className="min-h-screen bg-background text-foreground font-sans selection:bg-primary/30">
+      
       {/* Background glow */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/10 blur-[120px] rounded-full animate-pulse-glow" />
@@ -79,15 +79,23 @@ const Index = () => {
             ))}
           </div>
 
-          {/* Avatar only (no logout) */}
-          <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-primary to-blue-500 p-[2px]">
-            <div className="w-full h-full rounded-full bg-background flex items-center justify-center overflow-hidden">
-              <img
-                src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix"
-                alt="avatar"
-                className="w-full h-full"
-              />
+          {/* RIGHT - TOGGLE + AVATAR */}
+          <div className="flex items-center gap-3">
+            
+            {/* 🌗 Theme Toggle */}
+            <ThemeToggle />
+
+            {/* Avatar */}
+            <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-primary to-blue-500 p-[2px]">
+              <div className="w-full h-full rounded-full bg-background flex items-center justify-center overflow-hidden">
+                <img
+                  src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix"
+                  alt="avatar"
+                  className="w-full h-full"
+                />
+              </div>
             </div>
+
           </div>
         </div>
       </nav>

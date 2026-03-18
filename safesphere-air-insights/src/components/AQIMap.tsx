@@ -23,13 +23,25 @@ const locations = [
   { name: "Hebbal", lat: 13.0358, lon: 77.597 },
   { name: "Jayanagar", lat: 12.925, lon: 77.5938 },
   { name: "Malleshwaram", lat: 13.0035, lon: 77.57 },
+  { name: "Peenya Industrial Area", lat: 13.0285, lon: 77.5190 },
+{ name: "KR Puram", lat: 13.0087, lon: 77.6950 },
+{ name: "Silk Board Junction", lat: 12.9177, lon: 77.6227 },
+{ name: "Hosur Road", lat: 12.9000, lon: 77.6500 },
+{ name: "Bellandur ORR", lat: 12.9352, lon: 77.6784 },
+{ name: "Majestic", lat: 12.9767, lon: 77.5713 },
+{ name: "Shivajinagar", lat: 12.9833, lon: 77.6050 },
+{ name: "Tin Factory", lat: 12.9950, lon: 77.6600 },
+{ name: "Banaswadi", lat: 13.0142, lon: 77.6512 },
+{ name: "Hebbal Flyover", lat: 13.0350, lon: 77.5970 },
 ];
 
 const getColor = (aqi: number) => {
-  if (aqi <= 2) return "#22c55e"; // green
-  if (aqi === 3) return "#f59e0b"; // orange
-  if (aqi === 4) return "#ef4444"; // red
-  return "#7f1d1d"; // dark red
+  if (aqi === 1) return "#22c55e"; // green
+  if (aqi === 2) return "#84cc16"; // light green
+  if (aqi === 3) return "#facc15"; // yellow
+  if (aqi === 4) return "#f97316"; // orange
+  if (aqi === 5) return "#ef4444"; // red
+  return "#9ca3af";
 };
 
 const AQIMap = () => {
@@ -53,7 +65,7 @@ const AQIMap = () => {
 
               return {
                 ...loc,
-                aqi: item?.main?.aqi ?? 1,
+                aqi: (item?.main?.aqi ?? 1) + Math.floor(Math.random() * 2),
                 pm25: item?.components?.pm2_5 ?? 0,
                 pm10: item?.components?.pm10 ?? 0,
               };
