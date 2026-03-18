@@ -187,6 +187,9 @@ Used for:
 ---
 
 ## 🗺️ Air Quality Map Feature
+. Data Source
+
+“We use real-time AQI data from an external API (based on OpenWeather), which aggregates government sensors and environmental models.”
 
 ### Tech Used
 
