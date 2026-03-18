@@ -6,12 +6,12 @@ backend/.env
 # 📦 NODE MODULES
 node_modules
 backend/node_modules
-frontend/node_modules
+safesphere-air-insights/node_modules
 
 # 🏗 BUILD FILES
 dist
 build
-frontend/dist
+safesphere-air-insights/dist
 
 # 🧠 ML FILES (optional - large)
 *.pkl
