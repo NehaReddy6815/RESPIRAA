@@ -4,6 +4,12 @@ SafeSphere is a full-stack intelligent system that analyzes air quality using a 
 
 ---
 
+Deployment:
+respiraa.vercel.app
+
+respiraa-git-main-neha-reddys-projects-42ab9e38.vercel.app
+respiraa-lry1ohqbi-neha-reddys-projects-42ab9e38.vercel.app
+
 ## 📌 Project Overview
 
 SafeSphere monitors environmental conditions using:
